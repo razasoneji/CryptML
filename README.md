@@ -39,3 +39,8 @@ This project has the potential to revolutionize cryptographic security by:
 ---
 
 By tackling this problem, we aim to bridge the gap between cryptography, machine learning, and cybersecurity, creating a tool that is both innovative and impactful in the real world.
+
+## Diagrams
+
+### Use Case Diagram
+https://github.com/razasoneji/CryptML/blob/main/Backend/images/UseCaseDiagram_final.png?raw=true
