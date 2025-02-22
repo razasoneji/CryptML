@@ -27,7 +27,7 @@ public class WebSecurityConfig {
 
     //better to define it like this
     private static final String[] publicRoutes = {
-            "/api/auth/login","/api/auth/signup","/api/auth/refresh"
+            "/api/auth/login","/api/auth/signup","/api/auth/refresh","/api/encryption/**"
     };
 
     private static final Logger logger = Logger.getLogger(WebSecurityConfig.class.getName());

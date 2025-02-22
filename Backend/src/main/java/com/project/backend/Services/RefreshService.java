@@ -2,6 +2,7 @@ package com.project.backend.Services;
 
 import com.project.backend.Entities.AuthResponse;
 import com.project.backend.Entities.User;
+import com.project.backend.Exceptions.InvalidJwtRefreshToken;
 import com.project.backend.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,7 @@ public class RefreshService {
             return new AuthResponse(newAccessToken, newRefreshToken);
         } else {
             log.info("Refresh token is invalid or expired.");
-            throw new RuntimeException("Invalid or expired refresh token");
+            throw new InvalidJwtRefreshToken("Invalid or expired refresh token");
         }
     }
 

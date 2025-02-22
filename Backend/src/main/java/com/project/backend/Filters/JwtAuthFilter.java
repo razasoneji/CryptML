@@ -1,6 +1,8 @@
 package com.project.backend.Filters;
 
 
+import com.project.backend.Exceptions.BearerTokenNotFoundException;
+import com.project.backend.Exceptions.InvalidJwtAccessToken;
 import com.project.backend.Services.JwtService;
 import com.project.backend.Services.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
@@ -50,6 +52,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             token = authHeader.substring(7);
             username = jwtService.extractUsername(token);
         }
+//        else{ //in case no header is found. dont do this .
+//            throw new BearerTokenNotFoundException("Bearer token or Authentication token not found.");
+//        }
 
         logger.info("Username in doFilterInternal : {}", username);
         if (username != null && (SecurityContextHolder.getContext().getAuthentication() == null
@@ -64,9 +69,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
                 logger.info("User authenticated: {}", username);
-            } else {
-                logger.warn("Invalid token for user: {}", username);
             }
+//            else { dont do this
+//                logger.warn("Invalid token for user: {}", username);
+//                throw new InvalidJwtAccessToken("Access token is not valid login again.");
+//            }
         }
         logger.info("Returning request received.");
         filterChain.doFilter(request, response);
