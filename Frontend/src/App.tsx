@@ -1,9 +1,12 @@
-import SignupFormDemo from './components/SignUp'
+import LandingPage from './components/LandingPage'
+import Layout from './components/Layout'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-      <SignupFormDemo />
+    <div>
+      <Layout>
+      <LandingPage />
+      </Layout>     
     </div>
   )
 }
