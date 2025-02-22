@@ -50,6 +50,7 @@ module.exports = {
         },
       },
     },
+<<<<<<< HEAD
     plugins: [require("tailwindcss-animate"),addVariablesForColors,require('tailwindcss-animate'),
       require('@tailwindcss/typography'),],
   }
@@ -57,6 +58,13 @@ module.exports = {
 
 
   function addVariablesForColors({ addBase, theme }) {
+=======
+    plugins: [require("tailwindcss-animate")],
+    plugins: [addVariablesForColors],
+  }
+
+  function addVariablesForColors({ addBase, theme }: any) {
+>>>>>>> 9ce474f343981eb4edef645f0c1d309613bfcf09
     let allColors = flattenColorPalette(theme("colors"));
     let newVars = Object.fromEntries(
       Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
