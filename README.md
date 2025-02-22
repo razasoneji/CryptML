@@ -61,7 +61,7 @@ By tackling this problem, we aim to bridge the gap between cryptography, machine
 
 
 
-###Prediction Activity Diagram 
+### Prediction Activity Diagram 
 ![dsfsdf](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Final_Prediction_Activity.png?raw=true)
 
 
@@ -70,7 +70,8 @@ By tackling this problem, we aim to bridge the gap between cryptography, machine
 ### Sequence Diagram
 
 
-###Login Sequence Diagram 
+### Login Sequence Diagram 
+
 ![dsfdsfsdf](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Final_login.png?raw=true)
 
 
