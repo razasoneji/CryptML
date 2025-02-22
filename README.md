@@ -43,4 +43,4 @@ By tackling this problem, we aim to bridge the gap between cryptography, machine
 ## Diagrams
 
 ### Use Case Diagram
-https://github.com/razasoneji/CryptML/blob/main/Backend/images/UseCaseDiagram_final.png?raw=true
+![Use case](https://github.com/razasoneji/CryptML/blob/main/Backend/images/UseCaseDiagram_final.png?raw=true)
