@@ -1,10 +1,24 @@
 import SignupFormDemo from './components/SignUp'
+import Login from './components/Login'
+import HistoryPage from './components/History';
+import Dashboard from './components/Dashboard'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-      <SignupFormDemo />
-    </div>
+    <Router>
+      
+        <Routes>
+          
+          <Route path="/signup" element={<SignupFormDemo />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/history" element= {<HistoryPage />} />
+          <Route path="/" element= {<Dashboard />} />
+         
+        </Routes>
+      
+    </Router>
   )
 }
 

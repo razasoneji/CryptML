@@ -1,26 +1,61 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
+    // Input component extends from shadcnui - https://ui.shadcn.com/docs/components/input
+    "use client";
+    import * as React from "react";
+    import { cn } from "@/lib/utils";
+    import { useMotionTemplate, useMotionValue, motion } from "framer-motion";
 
-function Input({ className, type, ...props }: React.ComponentProps<"input">) {
-  return (
-    <div className="relative group w-full">
-      <input
-        type={type}
-        data-slot="input"
-        className={cn(
-          "border-input file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none",
-          "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
-          "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-          "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-          "group-hover:border-indigo-500 group-hover:ring-2 group-hover:ring-indigo-500/50", // Hover effect added here
-          className
-        )}
-        {...props}
-      />
-      {/* Hover gradient effect */}
-      <span className="group-hover:opacity-100 opacity-0 transition duration-500 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-    </div>
-  )
-}
+    export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-export { Input }
+
+    const Input = React.forwardRef<HTMLInputElement, InputProps>(
+    ({ className, type, ...props }, ref) => {
+        const radius = 600; // change this to increase the rdaius of the hover effect
+        const [visible, setVisible] = React.useState(false);
+
+        const mouseX = useMotionValue(0);
+        const mouseY = useMotionValue(0);
+
+        function handleMouseMove({ currentTarget, clientX, clientY }: any) {
+        const { left, top } = currentTarget.getBoundingClientRect();
+
+        mouseX.set(clientX - left);
+        mouseY.set(clientY - top);
+        }
+        return (
+        <motion.div
+            style={{
+            background: useMotionTemplate`
+            radial-gradient(
+            ${visible ? radius + "px" : "0px"} circle at ${mouseX}px ${mouseY}px,
+            var(--blue-500),
+            transparent 80%
+            )
+        `,
+            }}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() => setVisible(true)}
+            onMouseLeave={() => setVisible(false)}
+            className="p-[2px] rounded-lg transition duration-300 group/input"
+        >
+            <input
+            type={type}
+            className={cn(
+                `flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm  file:border-0 file:bg-transparent 
+            file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
+            focus-visible:outline-none focus-visible:ring-[2px]  focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600
+            disabled:cursor-not-allowed disabled:opacity-50
+            dark:shadow-[0px_0px_1px_1px_var(--neutral-700)]
+            group-hover/input:shadow-none transition duration-400
+            `,
+                className
+            )}
+            ref={ref}
+            {...props}
+            />
+        </motion.div>
+        );
+    }
+    );
+    Input.displayName = "Input";
+
+    export { Input };
