@@ -1,9 +1,9 @@
 export interface AlgorithmIdentificationHistory {
-  id: string;
+  id: number;
   data: string;
-  timestamp: string;
-  correctData: boolean;
-  predictedAlgorithm: string;
+  createdAt: string;
+  correctedData: boolean;
+  predictedAlgorithm: string
 }
 
 export interface PopupProps {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Terminal, Home, Book, Info, LogIn, UserPlus, LogOut } from 'lucide-react';
 
 const BackgroundGrid = () => (
@@ -12,8 +12,17 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const isLoggedIn = false; // Replace with actual authentication logic
+  const[isLoggedIn , setisLoggedIn ]= useState(false); // Replace with actual authentication logic
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    setisLoggedIn(!!token); // Converts token existence to boolean
+  }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    setisLoggedIn(false);
+  };
   return (
     <div className="relative min-h-screen bg-black text-white">
       <BackgroundGrid />
@@ -46,7 +55,7 @@ const Layout = ({ children }: LayoutProps) => {
           </div>
           <div className="flex items-center space-x-4">
             {isLoggedIn ? (
-              <button className="flex items-center text-gray-400 hover:text-white transition duration-300">
+              <button className="flex items-center text-gray-400 hover:text-white transition duration-300" onClick={handleLogout}>
                 <LogOut className="mr-2 h-5 w-5" />
                 Logout
               </button>
