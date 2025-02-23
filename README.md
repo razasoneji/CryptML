@@ -131,8 +131,7 @@ Backend/
 │   ├── test/
 │   │   ├── java/com/project/backend/
 │   │   │   ├── BackendApplicationTests.java
-
-
+_______________________________________________________________________________
 Frontend/
 ├── src/
 │   ├── components/        # Reusable UI components
