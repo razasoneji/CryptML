@@ -39,3 +39,83 @@ This project has the potential to revolutionize cryptographic security by:
 ---
 
 By tackling this problem, we aim to bridge the gap between cryptography, machine learning, and cybersecurity, creating a tool that is both innovative and impactful in the real world.
+
+## Diagrams
+
+### Use Case Diagram
+![Use case](https://github.com/razasoneji/CryptML/blob/main/Backend/images/UseCaseDiagram_final.png?raw=true)
+
+### State Diagram
+![]()
+![Class Diagram](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Final_Class_Diagram.png?raw=true)
+
+
+### Activity Diagram
+
+### Authentication Activity Diagram
+![actovity Diagram](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Final_Authentication_Activity.png?raw=true)
+
+
+### Encryption Activity Diagram
+![dsfsdf](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Final_Encryption_Activity.png?raw=true)
+
+
+
+### Prediction Activity Diagram 
+![dsfsdf](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Final_Prediction_Activity.png?raw=true)
+
+
+
+
+### Sequence Diagram
+
+
+### Login Sequence Diagram 
+
+![dsfdsfsdf](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Final_login.png?raw=true)
+
+
+### Refresh Sequence Diagram
+![actovsdfity Diagram](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Final_Refresh.png?raw=true)
+
+
+### Signup Sequence Diagram
+![dsfssdfdf](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Final_Signup.png?raw=true)
+
+
+
+
+### State Diagram
+
+
+### Prediction State Diagram
+![dsfsdfssdfdf](https://github.com/razasoneji/CryptML/blob/main/Backend/images/State_Prediction_final.png?raw=true)
+
+### Encrypting State Diagram 
+![dsfdsdsffdsfsdf](https://github.com/razasoneji/CryptML/blob/main/Backend/images/State_Final_Encrypting.png?raw=true)
+
+
+
+### User profile State Diagram
+![dsfsdfssdfsdfsdfdf](https://github.com/razasoneji/CryptML/blob/main/Backend/images/State_User_Final_profile.png?raw=true)
+
+
+### User Authentication State Diagram
+![actovsdfitdsfyasdf Diagram](https://github.com/razasoneji/CryptML/blob/main/Backend/images/State_Final_UserAuthentication.png?raw=true)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
