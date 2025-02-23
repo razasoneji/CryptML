@@ -71,7 +71,7 @@ Our project leverages a modern and scalable technology stack for both frontend a
 - Additional dependencies to ensure a production-ready API  
 
 This tech stack enables a seamless integration between frontend, backend, and machine learning components, ensuring a smooth user experience. 🚀  
-
+```plaintext
 Backend/
 ├── pom.xml
 ├── mvnw
@@ -153,7 +153,7 @@ Frontend/
 │   ├── main.tsx           # Entry point of the React app
 │   ├── types.ts           # TypeScript type definitions
 │   ├── vite-env.d.ts      # Vite environment types
-
+```
 ## Diagrams
 
 ### Use Case Diagram
