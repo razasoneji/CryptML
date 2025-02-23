@@ -45,8 +45,8 @@ By tackling this problem, we aim to bridge the gap between cryptography, machine
 
 
 
-## 📂 Presentation  
-You can view the project presentation here:  
+# 📂 Presentation  
+You can view the project presentation, some key points are discussed in this ppt regarding the project here:  
 
 [View Presentation](https://docs.google.com/presentation/d/1HG2yGzrDRv5D98kzMdwgv0mOmoPEIMLZ/edit?usp=sharing&ouid=113623327821126759756&rtpof=true&sd=true)
 
