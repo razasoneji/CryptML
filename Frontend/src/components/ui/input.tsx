@@ -3,6 +3,7 @@
     import * as React from "react";
     import { cn } from "@/lib/utils";
     import { useMotionTemplate, useMotionValue, motion } from "framer-motion";
+    // import { MouseMoveEvent } from "@/types";
 
     export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 

@@ -11,3 +11,9 @@ export interface PopupProps {
   onClose: () => void;
   onEdit: (id: string, correctData: boolean) => void; // Added onEdit prop
 }
+
+
+export interface HistoryItemProps {
+  item: AlgorithmIdentificationHistory;
+  onClick: () => void;
+}

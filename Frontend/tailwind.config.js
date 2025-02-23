@@ -1,4 +1,20 @@
+// tailwind.config.js
+
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin')
+const flattenColorPalette = require("tailwindcss/lib/util/flattenColorPalette").default
+
+const addVariablesForColors = plugin(function({ addBase, theme }) {
+  let allColors = flattenColorPalette(theme("colors"))
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  )
+ 
+  addBase({
+    ":root": newVars,
+  })
+})
+
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -14,17 +30,9 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-  plugins: [addVariablesForColors],
-}
-
-function addVariablesForColors({ addBase, theme }: any) {
-  let allColors = flattenColorPalette(theme("colors"));
-  let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
-  );
- 
-  addBase({
-    ":root": newVars,
-  });
+  plugins: [
+    require("tailwindcss-animate"),
+    addVariablesForColors,
+    require('@tailwindcss/typography'),
+  ],
 }

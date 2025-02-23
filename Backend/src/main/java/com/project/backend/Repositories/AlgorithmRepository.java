@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface AlgorithmRepository extends JpaRepository<Algorithm, Long> {
     Optional<Algorithm> findByName(String name);
+
+    Algorithm getAlgorithmByName(String name);
 }

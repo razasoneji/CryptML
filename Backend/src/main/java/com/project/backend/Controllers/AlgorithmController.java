@@ -24,6 +24,12 @@ public class AlgorithmController {
         return ResponseEntity.ok(algorithms);
     }
 
+
+    @GetMapping("/{algo}")
+    public ResponseEntity<Algorithm> getAlgorithmsByName(@PathVariable String algo) {
+        return ResponseEntity.ok(algorithmService.getAlgorithm(algo));
+    }
+
     // Endpoint: Get 4 random algorithms excluding a specific one
     @GetMapping("/random/exclude")
     public ResponseEntity<List<Algorithm>> getRandomAlgorithmsExcluding(@RequestParam String exclude) {

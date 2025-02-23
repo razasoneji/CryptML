@@ -1,9 +1,15 @@
 "use client";
-import type React from "react";
+import React from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { BackgroundBeams } from "@/components/ui/background-beams"; // Import BackgroundBeams
+import { BackgroundBeams } from "@/components/ui/background-beams";
+
+const BackgroundGrid = () => (
+  <div className="absolute inset-0 -z-10 h-full w-full bg-black bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]">
+    <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-purple-500 opacity-20 blur-[100px]"></div>
+  </div>
+);
 
 export default function SignupFormDemo() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -12,77 +18,72 @@ export default function SignupFormDemo() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center relative">
-      {/* Add BackgroundBeams here */}
+    <div className="relative min-h-screen bg-black text-white">
+      <BackgroundGrid />
       <BackgroundBeams className="absolute top-0 left-0 w-full h-full pointer-events-none z-0" />
 
-      {/* Form container */}
-      <div className="w-full max-w-sm sm:max-w-md mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black relative z-10">
-        <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">Welcome to CryptML</h2>
+      <div className="container mx-auto flex min-h-screen items-center justify-center px-4">
+        <div className="w-full max-w-md rounded-xl border border-gray-800 bg-black/50 backdrop-blur-md p-8 relative z-10">
+          <h2 className="mb-6 text-2xl font-bold text-purple-400">Welcome to CryptML</h2>
 
-        <form className="my-8" onSubmit={handleSubmit}>
-          <div className="flex flex-col md:flex-row gap-2 md:gap-4 mb-4">
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <div className="flex flex-col md:flex-row gap-4">
+              <LabelInputContainer>
+                <Label htmlFor="firstname" className="text-gray-400">First name</Label>
+                <Input
+                  id="firstname"
+                  placeholder="Tyler"
+                  type="text"
+                  className="bg-zinc-800 border-none text-white shadow-input"
+                />
+              </LabelInputContainer>
+              <LabelInputContainer>
+                <Label htmlFor="lastname" className="text-gray-400">Last name</Label>
+                <Input
+                  id="lastname"
+                  placeholder="Durden"
+                  type="text"
+                  className="bg-zinc-800 border-none text-white shadow-input"
+                />
+              </LabelInputContainer>
+            </div>
+
             <LabelInputContainer>
-              <Label htmlFor="firstname">First name</Label>
+              <Label htmlFor="email" className="text-gray-400">Username</Label>
               <Input
-                id="firstname"
-                placeholder="Tyler"
-                type="text"
-                className="bg-white dark:bg-neutral-900 text-black dark:text-white border border-neutral-200 dark:border-neutral-700 rounded-md transition-colors focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-neutral-500 dark:placeholder:text-neutral-400"
+                id="email"
+                placeholder="projectmayhem@fc.com"
+                type="email"
+                className="bg-zinc-800 border-none text-white shadow-input"
               />
             </LabelInputContainer>
+
             <LabelInputContainer>
-              <Label htmlFor="lastname">Last name</Label>
+              <Label htmlFor="password" className="text-gray-400">Password</Label>
               <Input
-                id="lastname"
-                placeholder="Durden"
-                type="text"
-                className="bg-white dark:bg-neutral-900 text-black dark:text-white border border-neutral-200 dark:border-neutral-700 rounded-md transition-colors focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-neutral-500 dark:placeholder:text-neutral-400"
+                id="password"
+                placeholder="••••••••"
+                type="password"
+                className="bg-zinc-800 border-none text-white shadow-input"
               />
             </LabelInputContainer>
-          </div>
 
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="email">Username</Label>
-            <Input
-              id="email"
-              placeholder="projectmayhem@fc.com"
-              type="email"
-              className="bg-white dark:bg-neutral-900 text-black dark:text-white border border-neutral-200 dark:border-neutral-700 rounded-md transition-colors focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-neutral-500 dark:placeholder:text-neutral-400"
-            />
-          </LabelInputContainer>
-
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              placeholder="••••••••"
-              type="password"
-              className="bg-white dark:bg-neutral-900 text-black dark:text-white border border-neutral-200 dark:border-neutral-700 rounded-md transition-colors focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-neutral-500 dark:placeholder:text-neutral-400"
-            />
-          </LabelInputContainer>
-
-          <button
-            className="bg-gradient-to-br relative group from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] hover:opacity-90 transition-all"
-            type="submit"
-          >
-            Sign up &rarr;
-            <BottomGradient />
-          </button>
-        </form>
+            <button
+              className="group relative w-full overflow-hidden rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 p-[2px] transition-all duration-300 ease-out hover:scale-105"
+              type="submit"
+            >
+              <div className="rounded-lg bg-black px-8 py-2.5 transition-all duration-300 group-hover:bg-opacity-90">
+                <span className="relative flex items-center justify-center text-white">
+                  Sign up →
+                </span>
+              </div>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
 }
-
-const BottomGradient = () => {
-  return (
-    <>
-      <span className="group-hover:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-      <span className="group-hover:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-    </>
-  );
-};
 
 const LabelInputContainer = ({
   children,
@@ -91,5 +92,5 @@ const LabelInputContainer = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  return <div className={cn("flex flex-col space-y-2 w-full", className)}>{children}</div>;
+  return <div className={cn("flex flex-col space-y-1.5 w-full", className)}>{children}</div>;
 };
