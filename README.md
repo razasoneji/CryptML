@@ -71,7 +71,81 @@ Our project leverages a modern and scalable technology stack for both frontend a
 - JWT for secure authentication and authorization  
 - Cryptographic libraries for data protection  
 - Spring Security for enforcing security best practices  
-- Additional dependencies to ensure a production-ready API  
+- Additional dependencies to ensure a production-ready API
+
+# Prerequisites
+Ensure you have the following installed on your system:
+- Java JDK 17+
+- Spring Boot (Integrated in your project)
+- Maven
+- PostgreSQL (or your preferred database)
+- Node.js & npm (for frontend, if applicable)
+- Metamask (or another Web3 wallet, if required)
+
+------------------------------------------------------------
+# Step 1: Clone the Repository
+```
+git clone https://github.com/razasoneji/CryptML.git
+cd CryptML
+```
+
+------------------------------------------------------------
+# Step 2: Setup Backend (Spring Boot)
+## Navigate to the backend directory
+```
+cd backend
+```
+
+## Configure Database (PostgreSQL/MySQL)
+# Open application.properties or application.yml in the src/main/resources folder.
+# Set up your database credentials:
+```
+spring.datasource.url=jdbc:postgresql://localhost:5432/cryptml_db
+spring.datasource.username=your_db_user
+spring.datasource.password=your_db_password
+spring.jpa.hibernate.ddl-auto=update
+```
+
+## Build and Run the Backend
+```
+mvn clean install
+mvn spring-boot:run
+```
+------------------------------------------------------------
+# Step 3: Setup Frontend
+## Navigate to the frontend directory
+```
+cd ../frontend
+```
+
+## Install Dependencies
+```
+npm install
+```
+
+## Run the Frontend
+```
+npm run dev
+```
+------------------------------------------------------------
+# Step 4: Testing the Setup
+## Backend: Open in browser or Postman
+```
+http://localhost:8080/api/health
+```
+
+## Frontend: Open in browser
+```
+http://localhost:3000
+```
+------------------------------------------------------------
+# Step 6: Deployment (Optional)
+## Backend: Deploy using Docker, AWS, or any cloud provider.
+## Frontend: Deploy using Vercel, Netlify, or any static hosting.
+
+------------------------------------------------------------
+# Installation and setup complete! 🚀
+
 
 This tech stack enables a seamless integration between frontend, backend, and machine learning components, ensuring a smooth user experience. 🚀  
 ```plaintext
@@ -439,6 +513,26 @@ The `UserController` provides endpoints for managing user profiles, including up
 
 ### Random Forest ML Architecture
 ![sdfasdfasdfasdfasd](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Screenshot%202025-02-23%20233110.png?raw=true)
+
+
+#Images of Project
+
+![sdfadsfsdf](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Screenshot%202025-02-23%20234340.png?raw=true)
+
+
+![sdfasdfadsewfrw](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Screenshot%202025-02-23%20234227.png?raw=true)
+
+
+![sdfasdfadsewfrwsd](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Screenshot%202025-02-23%20234347.png?raw=true)
+
+
+![dsfasdfewdfsdv](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Screenshot%202025-02-23%20234359.png?raw=true)
+
+
+![asefsdfsdf](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Screenshot%202025-02-23%20234407.png?raw=true)
+
+
+
 
 
 
