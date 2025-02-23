@@ -19,6 +19,11 @@ public class AlgorithmService {
         this.algorithmRepository = algorithmRepository;
     }
 
+
+    public Algorithm getAlgorithm(String algorithmName) {
+        return algorithmRepository.getAlgorithmByName(algorithmName);
+    }
+
     // Get all algorithms in a random order
     public List<Algorithm> getAllAlgorithmsRandom() {
         List<Algorithm> algorithms = algorithmRepository.findAll();

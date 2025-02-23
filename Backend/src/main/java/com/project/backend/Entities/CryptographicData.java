@@ -32,7 +32,11 @@ public class CryptographicData {
 
     private Boolean correctedData = true;
 
-    @Enumerated(EnumType.STRING) // Store the enum as a string in the database
-    @Column(nullable = true)
-    private CryptographicAlgorithm predictedAlgorithm; // The predicted algorithm (e.g., AES, SHA256)
+
+    private String PredictedAlgorithm;
+
+//    @Enumerated(EnumType.STRING) // Store the enum as a string in the database
+//    @Column(nullable = true)
+//    private CryptographicAlgorithm predictedAlgorithm; // The predicted algorithm (e.g., AES, SHA256)
+
 }

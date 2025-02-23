@@ -13,7 +13,6 @@ import java.security.*;
 import java.security.interfaces.ECPrivateKey;
 import java.security.spec.ECGenParameterSpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.Base64;
 
 @Service
 public class EncryptionService {
