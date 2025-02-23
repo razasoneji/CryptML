@@ -1,10 +1,13 @@
-import React from 'react';
+
 import { 
-  Lock, Key, Hash, Cpu, BookOpen, Code2, Database, 
+  Lock, Key, Hash, Cpu, Code2, Database, 
   Binary, Network, Terminal, Fingerprint, Shield, 
   Link2, LockKeyhole, Repeat
 } from 'lucide-react';
 import { BackgroundBeams } from './ui/background-beams';
+import { Typewriter } from 'react-simple-typewriter';
+
+
 
 const algorithmData = [
   {
@@ -217,10 +220,17 @@ const DocumentationPage = () => {
         <h1 className="mb-4 text-7xl font-extrabold text-purple-400">
           CryptML Documentation
         </h1>
-        <p className="mx-auto mb-12 max-w-3xl text-lg text-gray-400">
-          Advanced cryptographic identification system leveraging entropy analysis, statistical modeling, 
-          and ensemble machine learning for algorithm detection with 98.5% accuracy
-        </p>
+        <div className="mx-auto mb-12 max-w-3xl text-lg text-gray-400">
+          <Typewriter
+            words={["Advanced cryptographic identification system leveraging entropy analysis, statistical modeling, and ensemble machine learning for algorithm detection with 98.5% accuracy"]}
+            loop={15}
+            cursor
+            cursorStyle='..'
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+          />
+        </div>
       </section>
 
       {/* System Architecture */}

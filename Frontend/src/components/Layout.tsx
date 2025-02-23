@@ -30,7 +30,7 @@ const Layout = ({ children }: LayoutProps) => {
                 <Home className="mr-2 h-5 w-5" />
                 Home
               </a>
-              <a href="/predict" className="flex items-center text-gray-400 hover:text-white transition duration-300">
+              <a href="/prediction" className="flex items-center text-gray-400 hover:text-white transition duration-300">
                 <Terminal className="mr-2 h-5 w-5" />
                 Prediction
               </a>
@@ -38,7 +38,7 @@ const Layout = ({ children }: LayoutProps) => {
                 <Book className="mr-2 h-5 w-5" />
                 Documentation
               </a>
-              <a href="/about" className="flex items-center text-gray-400 hover:text-white transition duration-300">
+              <a href="/encry" className="flex items-center text-gray-400 hover:text-white transition duration-300">
                 <Info className="mr-2 h-5 w-5" />
                 Encryption
               </a>
@@ -77,7 +77,7 @@ const Layout = ({ children }: LayoutProps) => {
               <a href="/" className="text-purple-400 hover:text-purple-300 transition duration-300">
                 Home
               </a>
-              <a href="/predict" className="text-gray-400 hover:text-white transition duration-300">
+              <a href="/prediction" className="text-gray-400 hover:text-white transition duration-300">
                 Prediction
               </a>
               <a href="/docs" className="text-gray-400 hover:text-white transition duration-300">
