@@ -40,6 +40,120 @@ This project has the potential to revolutionize cryptographic security by:
 
 By tackling this problem, we aim to bridge the gap between cryptography, machine learning, and cybersecurity, creating a tool that is both innovative and impactful in the real world.
 
+
+
+## 📂 Presentation  
+You can view the project presentation here:  
+
+[View Presentation](https://docs.google.com/presentation/d/1HG2yGzrDRv5D98kzMdwgv0mOmoPEIMLZ/edit?usp=sharing&ouid=113623327821126759756&rtpof=true&sd=true)
+
+## 🚀 Tech Stack  
+
+Our project leverages a modern and scalable technology stack for both frontend and backend development, ensuring high performance, security, and maintainability.  
+
+### **🖥 Frontend**  
+- React with Vite for a fast and efficient development experience  
+- Tailwind CSS and PostCSS for a responsive and modern UI  
+- Aceternity UI and ShadCN for prebuilt UI components  
+- Axios for API communication  
+- Lucid React for enhanced UI elements  
+
+### **🧠 Machine Learning**  
+- Python-based Random Forest model for predictions  
+- Required libraries for model training, evaluation, and inference  
+- A dedicated predictor file for handling predictions  
+
+### **🔐 Backend**  
+- Spring Boot for a robust and scalable backend  
+- JWT for secure authentication and authorization  
+- Cryptographic libraries for data protection  
+- Spring Security for enforcing security best practices  
+- Additional dependencies to ensure a production-ready API  
+
+This tech stack enables a seamless integration between frontend, backend, and machine learning components, ensuring a smooth user experience. 🚀  
+
+Backend/
+├── pom.xml
+├── mvnw
+├── mvnw.cmd
+├── src/
+│   ├── main/
+│   │   ├── java/com/project/backend/
+│   │   │   ├── BackendApplication.java
+│   │   │   ├── Configurations/
+│   │   │   │   ├── AppConfig.java
+│   │   │   │   ├── WebSecurityConfig.java
+│   │   │   ├── Controllers/
+│   │   │   │   ├── AlgorithmController.java
+│   │   │   │   ├── AuthController.java
+│   │   │   │   ├── CryptographicDataController.java
+│   │   │   │   ├── EncryptionController.java
+│   │   │   │   ├── MLController.java
+│   │   │   │   ├── UserController.java
+│   │   │   ├── Entities/
+│   │   │   │   ├── Algorithm.java
+│   │   │   │   ├── AuthResponse.java
+│   │   │   │   ├── CryptographicAlgorithm.java
+│   │   │   │   ├── CryptographicData.java
+│   │   │   │   ├── LoginRequest.java
+│   │   │   │   ├── RefreshTokenRequest.java
+│   │   │   │   ├── SignupRequest.java
+│   │   │   │   ├── User.java
+│   │   │   ├── ExceptionHandler/
+│   │   │   │   ├── GlobalExceptionHandler.java
+│   │   │   ├── Exceptions/
+│   │   │   │   ├── BearerTokenNotFoundException.java
+│   │   │   │   ├── InvalidJwtAccessToken.java
+│   │   │   │   ├── InvalidJwtRefreshToken.java
+│   │   │   ├── Filters/
+│   │   │   │   ├── JwtAuthFilter.java
+│   │   │   ├── Repositories/
+│   │   │   │   ├── AlgorithmRepository.java
+│   │   │   │   ├── CryptographicDataRepository.java
+│   │   │   │   ├── UserRepository.java
+│   │   │   ├── Services/
+│   │   │   │   ├── AlgorithmService.java
+│   │   │   │   ├── CryptographicDataService.java
+│   │   │   │   ├── EncryptionService.java
+│   │   │   │   ├── JwtService.java
+│   │   │   │   ├── LoginService.java
+│   │   │   │   ├── MLService.java
+│   │   │   │   ├── RefreshService.java
+│   │   │   │   ├── SignupService.java
+│   │   │   │   ├── UserDetailsServiceImpl.java
+│   │   │   │   ├── UserService.java
+│   │   ├── resources/
+│   │   │   ├── application.properties
+│   │   │   ├── data.sql
+│   │   │   ├── scripts/
+│   │   │   │   ├── model.pickle
+│   │   │   │   ├── predict.py
+│   ├── test/
+│   │   ├── java/com/project/backend/
+│   │   │   ├── BackendApplicationTests.java
+
+
+Frontend/
+├── src/
+│   ├── components/        # Reusable UI components
+│   ├── lib/               # Utility functions or external libraries
+│   ├── ui/                # UI pages and layout components
+│   │   ├── Dashboard.tsx              # Dashboard page
+│   │   ├── DocumentationPage.tsx       # Documentation page
+│   │   ├── History.tsx                 # History page
+│   │   ├── HistoryListItem.tsx         # History list item component
+│   │   ├── LandingPage.tsx             # Landing page
+│   │   ├── Layout.tsx                  # Main layout wrapper
+│   │   ├── Login.tsx                   # Login page
+│   │   ├── ProfilePage.tsx             # User profile page
+│   │   ├── SignUp.tsx                  # Sign-up page
+│   ├── App.css            # Global styles for the App component
+│   ├── App.tsx            # Main application component
+│   ├── index.css          # Global styles
+│   ├── main.tsx           # Entry point of the React app
+│   ├── types.ts           # TypeScript type definitions
+│   ├── vite-env.d.ts      # Vite environment types
+
 ## Diagrams
 
 ### Use Case Diagram
@@ -102,11 +216,6 @@ By tackling this problem, we aim to bridge the gap between cryptography, machine
 
 ### User Authentication State Diagram
 ![actovsdfitdsfyasdf Diagram](https://github.com/razasoneji/CryptML/blob/main/Backend/images/State_Final_UserAuthentication.png?raw=true)
-
-
-
-
-
 
 
 
