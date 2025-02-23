@@ -3,6 +3,7 @@ import { Github, Twitter, Menu, X } from 'lucide-react';
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Simulate authentication state
 
   const navLinkClasses =
     'relative text-gray-300 hover:text-white transition-colors group';
@@ -10,6 +11,17 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const underlineSpan = (
     <span className="absolute left-0 bottom-0 block h-0.5 w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
   );
+
+  const authButtonClasses =
+    'px-4 py-2 rounded-md font-semibold text-white transition-all duration-300 hover:shadow-lg';
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
 
   return (
     <div className="min-h-screen bg-black">
@@ -25,7 +37,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
             </a>
 
             {/* Desktop Navigation */}
-            <div className="hidden space-x-6 md:flex">
+            <div className="hidden space-x-6 md:flex items-center">
               <a href="/" className={navLinkClasses}>
                 Home
                 {underlineSpan}
@@ -42,6 +54,31 @@ const Layout = ({ children }: { children: ReactNode }) => {
                 About
                 {underlineSpan}
               </a>
+
+              {/* Auth Buttons */}
+              {isLoggedIn ? (
+                <button
+                  onClick={handleLogout}
+                  className={`${authButtonClasses} bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600`}
+                >
+                  Logout
+                </button>
+              ) : (
+                <div className="flex space-x-4">
+                  <button
+                    onClick={handleLogin}
+                    className={`${authButtonClasses} bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600`}
+                  >
+                    Login
+                  </button>
+                  <button
+                    onClick={handleLogin}
+                    className={`${authButtonClasses} bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600`}
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Mobile menu button */}
@@ -77,6 +114,31 @@ const Layout = ({ children }: { children: ReactNode }) => {
                   About
                   {underlineSpan}
                 </a>
+
+                {/* Auth Buttons for Mobile */}
+                {isLoggedIn ? (
+                  <button
+                    onClick={handleLogout}
+                    className={`${authButtonClasses} bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600`}
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <div className="flex flex-col space-y-4">
+                    <button
+                      onClick={handleLogin}
+                      className={`${authButtonClasses} bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600`}
+                    >
+                      Login
+                    </button>
+                    <button
+                      onClick={handleLogin}
+                      className={`${authButtonClasses} bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600`}
+                    >
+                      Sign Up
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           )}
