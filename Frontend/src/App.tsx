@@ -6,7 +6,7 @@ import LandingPage from './components/LandingPage';
 import Layout from './components/Layout';
 import  ProfilePage from './components/ProfilePage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import DocumentationPage from './components/DocumentationPage';
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
           <Route path="/history" element= {<HistoryPage />} />
           <Route path="/" element= {<LandingPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/docs" element= {<DocumentationPage />} />
          
         </Routes>
       </Layout>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, ShieldCheck, Zap, Lock, Terminal, Database } from 'lucide-react';
+import { BackgroundBeams } from './ui/background-beams';
 
 const BackgroundGrid = () => (
   <div className="absolute inset-0 -z-10 h-full w-full bg-black bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]">
@@ -57,6 +58,7 @@ const LandingPage = () => {
   return (
     <div className="relative min-h-screen bg-black text-white">
       <BackgroundGrid />
+      <BackgroundBeams className="absolute top-0 left-0 w-full h-full pointer-events-none z-0" />
       
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 text-center">

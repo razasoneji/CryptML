@@ -1,173 +1,95 @@
-import React, { useState, ReactNode } from 'react';
-import { Github, Twitter, Menu, X } from 'lucide-react';
+import React from 'react';
+import { Terminal, Home, Book, Info, LogIn, UserPlus, LogOut } from 'lucide-react';
 
-const Layout = ({ children }: { children: ReactNode }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const BackgroundGrid = () => (
+  <div className="absolute inset-0 -z-10 h-full w-full bg-black bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]">
+    <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-purple-500 opacity-20 blur-[100px]"></div>
+  </div>
+);
 
-  const navLinkClasses =
-    'relative text-gray-300 hover:text-white transition-colors group';
+interface LayoutProps {
+  children: React.ReactNode;
+}
 
-  const underlineSpan = (
-    <span className="absolute left-0 bottom-0 block h-0.5 w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
-  );
+const Layout = ({ children }: LayoutProps) => {
+  const isLoggedIn = false; // Replace with actual authentication logic
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="relative min-h-screen bg-black text-white">
+      <BackgroundGrid />
+
       {/* Navbar */}
-      <nav className="fixed top-0 z-50 w-full border-b border-gray-800 bg-gray-900 backdrop-blur-xl shadow-md">
-        <div className="container mx-auto px-4">
-          <div className="flex h-16 items-center justify-between">
-            <a
-              href="/"
-              className="text-2xl font-extrabold text-white tracking-wide"
-            >
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-gray-800 bg-black/50 backdrop-blur-md">
+        <div className="container mx-auto flex items-center justify-between px-4 py-3">
+          <div className="flex items-center space-x-8">
+            <a href="/" className="flex items-center text-2xl font-bold text-purple-400">
               CryptML
             </a>
-
-            {/* Desktop Navigation */}
-            <div className="hidden space-x-6 md:flex">
-              <a href="/" className={navLinkClasses}>
+            <div className="hidden md:flex items-center space-x-6">
+              <a href="/" className="flex items-center text-gray-400 hover:text-white transition duration-300">
+                <Home className="mr-2 h-5 w-5" />
                 Home
-                {underlineSpan}
               </a>
-              <a href="/predict" className={navLinkClasses}>
-                Predictor
-                {underlineSpan}
+              <a href="/predict" className="flex items-center text-gray-400 hover:text-white transition duration-300">
+                <Terminal className="mr-2 h-5 w-5" />
+                Prediction
               </a>
-              <a href="/docs" className={navLinkClasses}>
+              <a href="/docs" className="flex items-center text-gray-400 hover:text-white transition duration-300">
+                <Book className="mr-2 h-5 w-5" />
                 Documentation
-                {underlineSpan}
               </a>
-              <a href="/about" className={navLinkClasses}>
-                About
-                {underlineSpan}
+              <a href="/about" className="flex items-center text-gray-400 hover:text-white transition duration-300">
+                <Info className="mr-2 h-5 w-5" />
+                Encryption
               </a>
             </div>
-
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden focus:outline-none"
-            >
-              {isMenuOpen ? (
-                <X className="h-6 w-6 text-white" />
-              ) : (
-                <Menu className="h-6 w-6 text-white" />
-              )}
-            </button>
           </div>
-
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="border-t border-gray-800 bg-gray-900 py-4 md:hidden">
-              <div className="flex flex-col space-y-4 text-center">
-                <a href="/" className={navLinkClasses}>
-                  Home
-                  {underlineSpan}
+          <div className="flex items-center space-x-4">
+            {isLoggedIn ? (
+              <button className="flex items-center text-gray-400 hover:text-white transition duration-300">
+                <LogOut className="mr-2 h-5 w-5" />
+                Logout
+              </button>
+            ) : (
+              <>
+                <a href="/login" className="flex items-center text-gray-400 hover:text-white transition duration-300">
+                  <LogIn className="mr-2 h-5 w-5" />
+                  Login
                 </a>
-                <a href="/predict" className={navLinkClasses}>
-                  Predictor
-                  {underlineSpan}
+                <a href="/signup" className="flex items-center rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 px-4 py-2 text-white hover:scale-105 transition duration-300">
+                  <UserPlus className="mr-2 h-5 w-5" />
+                  Signup
                 </a>
-                <a href="/docs" className={navLinkClasses}>
-                  Documentation
-                  {underlineSpan}
-                </a>
-                <a href="/about" className={navLinkClasses}>
-                  About
-                  {underlineSpan}
-                </a>
-              </div>
-            </div>
-          )}
+              </>
+            )}
+          </div>
         </div>
       </nav>
 
       {/* Main Content */}
-      <main className="pt-16">{children}</main>
+      <main className="pt-20">{children}</main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-800 bg-gray-900 backdrop-blur-xl shadow-md">
-        <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-            <div>
-              <h3 className="mb-4 text-lg font-semibold text-white">
-                CryptML
-              </h3>
-              <p className="text-sm text-gray-400">
-                Advanced cryptographic algorithm identification using machine
-                learning.
-              </p>
+      <footer className="border-t border-gray-800 bg-black/50 backdrop-blur-md mt-20">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+            <div className="flex items-center space-x-4">
+              <a href="/" className="text-purple-400 hover:text-purple-300 transition duration-300">
+                Home
+              </a>
+              <a href="/predict" className="text-gray-400 hover:text-white transition duration-300">
+                Prediction
+              </a>
+              <a href="/docs" className="text-gray-400 hover:text-white transition duration-300">
+                Documentation
+              </a>
+              <a href="/about" className="text-gray-400 hover:text-white transition duration-300">
+                About
+              </a>
             </div>
-
-            <div>
-              <h3 className="mb-4 text-lg font-semibold text-white">
-                Quick Links
-              </h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <a href="/predict" className="hover:text-white transition-colors">
-                    Try Predictor
-                  </a>
-                </li>
-                <li>
-                  <a href="/docs" className="hover:text-white transition-colors">
-                    Documentation
-                  </a>
-                </li>
-                <li>
-                  <a href="/about" className="hover:text-white transition-colors">
-                    About Project
-                  </a>
-                </li>
-              </ul>
+            <div className="text-gray-400">
+              &copy; {new Date().getFullYear()} CryptML. All rights reserved.
             </div>
-
-            <div>
-              <h3 className="mb-4 text-lg font-semibold text-white">
-                Resources
-              </h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <a href="/api" className="hover:text-white transition-colors">
-                    API Reference
-                  </a>
-                </li>
-                <li>
-                  <a href="/blog" className="hover:text-white transition-colors">
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a href="/faq" className="hover:text-white transition-colors">
-                    FAQ
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="mb-4 text-lg font-semibold text-white">
-                Connect
-              </h3>
-              <div className="flex space-x-4">
-                <a
-                  href="https://github.com"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <Github className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://twitter.com"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <Twitter className="h-5 w-5" />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="mt-8 border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; {new Date().getFullYear()} CryptML. All rights reserved.</p>
           </div>
         </div>
       </footer>
