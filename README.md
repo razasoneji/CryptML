@@ -437,8 +437,8 @@ The `UserController` provides endpoints for managing user profiles, including up
 ![actovsdfitdsfyasdf Diagram](https://github.com/razasoneji/CryptML/blob/main/Backend/images/State_Final_UserAuthentication.png?raw=true)
 
 
-
-
+### Random Forest ML Architecture
+![sdfasdfasdfasdfasd](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Screenshot%202025-02-23%20233110.png?raw=true)
 
 
 
