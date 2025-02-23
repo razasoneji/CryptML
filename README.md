@@ -80,25 +80,24 @@ Ensure you have the following installed on your system:
 - Maven
 - PostgreSQL (or your preferred database)
 - Node.js & npm (for frontend, if applicable)
-- Metamask (or another Web3 wallet, if required)
 
 ------------------------------------------------------------
-# Step 1: Clone the Repository
+## Step 1: Clone the Repository
 ```
 git clone https://github.com/razasoneji/CryptML.git
 cd CryptML
 ```
 
 ------------------------------------------------------------
-# Step 2: Setup Backend (Spring Boot)
-## Navigate to the backend directory
+## Step 2: Setup Backend (Spring Boot)
+### Navigate to the backend directory
 ```
 cd backend
 ```
 
 ## Configure Database (PostgreSQL/MySQL)
-# Open application.properties or application.yml in the src/main/resources folder.
-# Set up your database credentials:
+### Open application.properties or application.yml in the src/main/resources folder.
+### Set up your database credentials:
 ```
 spring.datasource.url=jdbc:postgresql://localhost:5432/cryptml_db
 spring.datasource.username=your_db_user
@@ -112,24 +111,24 @@ mvn clean install
 mvn spring-boot:run
 ```
 ------------------------------------------------------------
-# Step 3: Setup Frontend
-## Navigate to the frontend directory
+## Step 3: Setup Frontend
+### Navigate to the frontend directory
 ```
 cd ../frontend
 ```
 
-## Install Dependencies
+### Install Dependencies
 ```
 npm install
 ```
 
-## Run the Frontend
+### Run the Frontend
 ```
 npm run dev
 ```
 ------------------------------------------------------------
-# Step 4: Testing the Setup
-## Backend: Open in browser or Postman
+## Step 4: Testing the Setup
+### Backend: Open in browser or Postman
 ```
 http://localhost:8080/api/health
 ```
@@ -139,12 +138,12 @@ http://localhost:8080/api/health
 http://localhost:3000
 ```
 ------------------------------------------------------------
-# Step 6: Deployment (Optional)
-## Backend: Deploy using Docker, AWS, or any cloud provider.
-## Frontend: Deploy using Vercel, Netlify, or any static hosting.
+## Step 6: Deployment (Optional)
+### Backend: Deploy using Docker, AWS, or any cloud provider.
+### Frontend: Deploy using Vercel, Netlify, or any static hosting.
 
 ------------------------------------------------------------
-# Installation and setup complete! 🚀
+## Installation and setup complete! 🚀
 
 
 This tech stack enables a seamless integration between frontend, backend, and machine learning components, ensuring a smooth user experience. 🚀  
