@@ -1,7 +1,10 @@
 # **AI/ML-Based Cryptographic Algorithm Identification**
 
-Welcome to the repository for the **AI/ML-Based Cryptographic Algorithm Identification** project! This project was developed as part of a hackathon with the goal of creating an intelligent system capable of identifying cryptographic algorithms from modern cryptographic datasets. By leveraging AI and ML techniques, the system analyzes data patterns and features to determine the cryptographic algorithm used, automating the process and enhancing the understanding of algorithm weaknesses to improve security.
+Welcome to the repository for the **AI/ML-Based Cryptographic Algorithm Identification** project! This project was developed as part of **DU Hacks 4.0 in 2025 held at DDU Nadiad**, with the goal of creating an intelligent system capable of identifying cryptographic algorithms from modern cryptographic datasets. By leveraging AI and ML techniques, the system analyzes data patterns and features to determine the cryptographic algorithm used, automating the process and enhancing the understanding of algorithm weaknesses to improve security.
+
+
 # **Real-World Problem Statement: AI/ML-Based Cryptographic Algorithm Identification**
+
 
 ## 🚨 The Challenge
 
@@ -153,17 +156,18 @@ Frontend/
 │   ├── types.ts           # TypeScript type definitions
 │   ├── vite-env.d.ts      # Vite environment types
 ```
-## Diagrams
+# Relevant Diagrams for the project
 
-### Use Case Diagram
+### Use Case Diagram for the project
 ![Use case](https://github.com/razasoneji/CryptML/blob/main/Backend/images/UseCaseDiagram_final.png?raw=true)
 
-### State Diagram
+### State Diagram for the project
+
 ![]()
 ![Class Diagram](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Final_Class_Diagram.png?raw=true)
 
 
-### Activity Diagram
+### Activity Diagram for the project
 
 ### Authentication Activity Diagram
 ![actovity Diagram](https://github.com/razasoneji/CryptML/blob/main/Backend/images/Final_Authentication_Activity.png?raw=true)
@@ -180,7 +184,7 @@ Frontend/
 
 
 
-### Sequence Diagram
+### Sequence Diagram for the project
 
 
 ### Login Sequence Diagram 
@@ -198,7 +202,7 @@ Frontend/
 
 
 
-### State Diagram
+### State Diagram for the project
 
 
 ### Prediction State Diagram
