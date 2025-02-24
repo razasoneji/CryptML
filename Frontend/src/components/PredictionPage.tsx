@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
-    Terminal, Clipboard, ClipboardCheck, Search, Zap, Shield, Lock,
-    AlertCircle, Hourglass, Hash, Key, Cpu, History
+    Terminal, Clipboard, Search, Zap, Shield, Lock,
+    AlertCircle, Hourglass, Key, Cpu, History
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BackgroundBeams } from './ui/background-beams';
@@ -226,10 +226,6 @@ const PredictionPage = () => {
         type: string;
     }
 
-    interface HistoryEntry {
-        input: string;
-        result: string;
-    }
 
     const mockPredict = async (hex: string): Promise<string> => {
         // Replace with actual API call

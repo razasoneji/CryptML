@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { 
-  Lock, Key, Hash, Clipboard, ClipboardCheck, 
+  Lock, Key, Hash, Clipboard, 
   RefreshCw, Settings, Shield, Zap, Rocket 
 } from 'lucide-react';
 import { BackgroundBeams } from './ui/background-beams';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 
 const algorithms = [
@@ -36,12 +36,6 @@ const EncryptionPage = () => {
   const [history, setHistory] = useState<{ algorithm: string; input: string; result: string }[]>([]);
 
   // Mock backend call
-interface Algorithm {
-    name: string;
-    type: string;
-    keySize: number;
-    icon: React.ComponentType;
-}
 
 interface EncryptionResult {
     encrypted: string;
@@ -49,10 +43,7 @@ interface EncryptionResult {
 }
 
 const encryptData = async (
-    algorithm: Algorithm,
-    text: string,
-    key: string,
-    iv: string
+    text: string
 ): Promise<EncryptionResult> => {
     await new Promise(resolve => setTimeout(resolve, 500));
     return {
@@ -86,7 +77,7 @@ const encryptData = async (
 
     setLoading(true);
     try {
-      const result = await encryptData(selectedAlgorithm, inputText, key, iv);
+      const result = await encryptData(inputText);
       setEncryptedText(result.encrypted);
       setHexValue(result.hex);
       

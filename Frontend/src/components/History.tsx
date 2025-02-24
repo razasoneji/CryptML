@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { HistoryListItem } from './HistoryListItem';
 
 interface AlgorithmIdentificationHistory {

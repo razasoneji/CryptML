@@ -74,7 +74,7 @@ const LandingPage = () => {
         </p>
 
         <div className="flex flex-wrap justify-center gap-6">
-          <SpotlightButton href="/predict" primary>
+          <SpotlightButton href="/prediction" primary>
             Try It Now
             <ArrowRight className="ml-2 h-5 w-5" />
           </SpotlightButton>
@@ -101,7 +101,7 @@ const LandingPage = () => {
               <p className="text-gray-400">
                 Our ML model analyzes cryptographic patterns in real-time, providing instant identification with confidence scores.
               </p>
-              <SpotlightButton href="/predict" primary>
+              <SpotlightButton href="/prediction" primary>
                 Start Analysis
                 <ArrowRight className="ml-2 h-5 w-5" />
               </SpotlightButton>
@@ -113,15 +113,15 @@ const LandingPage = () => {
               <div className="flex items-center justify-between rounded-lg bg-gray-900 p-4">
                 <div>
                   <p className="text-sm text-gray-400">Supported Algorithms</p>
-                  <p className="text-2xl font-bold text-white">50+</p>
+                  <p className="text-2xl font-bold text-white">15+</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Accuracy Rate</p>
-                  <p className="text-2xl font-bold text-white">98.5%</p>
+                  <p className="text-2xl font-bold text-white">65.87%</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Training Data</p>
-                  <p className="text-2xl font-bold text-white">1M+</p>
+                  <p className="text-2xl font-bold text-white">1 Lakh+</p>
                 </div>
               </div>
             </div>

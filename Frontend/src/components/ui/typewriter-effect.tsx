@@ -19,6 +19,7 @@ export const TypewriterEffect: React.FC<TypewriterEffectProps> = ({ text, cursor
           setCharIndex(charIndex + 1);
         }, 50);
         return () => clearTimeout(timeout);
+        setCurrentTextIndex(1);
       }
     }
   }, [charIndex, currentTextIndex, text]);
