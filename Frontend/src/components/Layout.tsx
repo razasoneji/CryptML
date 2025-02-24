@@ -113,7 +113,7 @@ const Layout = ({ children }: LayoutProps) => {
                 <li><a href="/" className="text-gray-400 hover:text-white transition duration-300">Home</a></li>
                 <li><a href="/prediction" className="text-gray-400 hover:text-white transition duration-300">Prediction</a></li>
                 <li><a href="/docs" className="text-gray-400 hover:text-white transition duration-300">Documentation</a></li>
-                <li><a href="/about" className="text-gray-400 hover:text-white transition duration-300">About</a></li>
+                <li><a href="/encry" className="text-gray-400 hover:text-white transition duration-300">About</a></li>
               </ul>
             </div>
             
