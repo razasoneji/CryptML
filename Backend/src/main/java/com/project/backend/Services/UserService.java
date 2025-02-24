@@ -2,12 +2,14 @@ package com.project.backend.Services;
 
 
 import com.project.backend.Entities.CryptographicData;
+import com.project.backend.Entities.UpdateUserRequest;
 import com.project.backend.Entities.User;
 import com.project.backend.Repositories.CryptographicDataRepository;
 import com.project.backend.Repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,37 @@ public class UserService {
 //
 //    }
 
+    public ResponseEntity<?> updateUserProfile(String currentUsername, UpdateUserRequest updateRequest) {
+        Optional<User> userOptional = userRepository.findByUsername(currentUsername);
+
+        if (userOptional.isEmpty()) {
+            return ResponseEntity.badRequest().body("User not found");
+        }
+
+        User user = userOptional.get();
+
+        // Check if new username is provided and if it is unique
+        if (updateRequest.getNewUsername() != null && !updateRequest.getNewUsername().equals(user.getUsername())) {
+            if (userRepository.existsByUsername(updateRequest.getNewUsername())) {
+                return ResponseEntity.badRequest().body("Username is already taken");
+            }
+            user.setUsername(updateRequest.getNewUsername());
+        }
+
+        // Update first name and last name
+        if (updateRequest.getFirstName() != null) {
+            user.setFirstName(updateRequest.getFirstName());
+        }
+
+        if (updateRequest.getLastName() != null) {
+            user.setLastName(updateRequest.getLastName());
+        }
+
+        userRepository.save(user);
+        return ResponseEntity.ok("Profile updated successfully");
+    }
+
+
     public void savePrediction(String inputHex, String predicted) {
         // Get authenticated user
         log.info("Got request to save prediction in user service");
@@ -58,5 +91,11 @@ public class UserService {
         } else {
             throw new RuntimeException("Error in setting prediction for user. User not found for username: " + username);
         }
+    }
+
+
+
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username).orElse(null);
     }
 }

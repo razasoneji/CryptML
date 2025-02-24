@@ -7,8 +7,6 @@ import Layout from './components/Layout';
 import  ProfilePage from './components/ProfilePage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DocumentationPage from './components/DocumentationPage';
-import EncryptionPage from './components/EncryptionPage';
-import PredictionPage from './components/PredictionPage';
 
 function App() {
   return (
@@ -22,8 +20,7 @@ function App() {
           <Route path="/" element= {<LandingPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/docs" element= {<DocumentationPage />} />
-          <Route path="/encry" element={<EncryptionPage/>}/>
-          <Route path="/prediction" element={<PredictionPage/>}/>
+         
         </Routes>
       </Layout>
     </Router>
