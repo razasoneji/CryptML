@@ -1,6 +1,6 @@
-import React from 'react';
+
 import { 
-  Lock, Key, Hash, Cpu, BookOpen, Code2, Database, 
+  Lock, Key, Hash, Cpu, Code2, Database, 
   Binary, Network, Terminal, Fingerprint, Shield, 
   Link2, LockKeyhole, Repeat
 } from 'lucide-react';
