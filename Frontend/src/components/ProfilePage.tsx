@@ -53,7 +53,20 @@ export default function ProfilePage() {
     setIsEditing(true);
     setUpdateMessage("");
   };
-  const handleUpdate = async (e) => {
+  // interface User {
+  //   firstName: string;
+  //   lastName: string;
+  //   username: string;
+  // }
+
+
+  interface UpdateData {
+    newUsername: string;
+    firstName: string;
+    lastName: string;
+  }
+
+  const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("accessToken");
@@ -61,7 +74,7 @@ export default function ProfilePage() {
         console.error("No access token found");
         return;
       }
-      const updateData = {
+      const updateData: UpdateData = {
         newUsername: pendingChanges.username,
         firstName: pendingChanges.firstName,
         lastName: pendingChanges.lastName,

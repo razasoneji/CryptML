@@ -39,7 +39,7 @@ const Layout = ({ children }: LayoutProps) => {
                 <Home className="mr-2 h-5 w-5" />
                 Home
               </a>
-              <a href="/predict" className="flex items-center text-gray-400 hover:text-white transition duration-300">
+              <a href="/prediction" className="flex items-center text-gray-400 hover:text-white transition duration-300">
                 <Terminal className="mr-2 h-5 w-5" />
                 Prediction
               </a>
