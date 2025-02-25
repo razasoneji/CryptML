@@ -4,8 +4,13 @@ import axios from "axios";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { BackgroundBeams } from "@/components/ui/background-beams";
+// import { BackgroundBeams } from "@/components/ui/background-beams";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../redux/authSlice.ts";
+
 
 
 const BackgroundGrid = () => (
@@ -20,6 +25,7 @@ export default function SignupFormDemo() {
     password: "",
   });
   const [error, setError] = useState("");
+  const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -29,27 +35,36 @@ export default function SignupFormDemo() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
-
+  
     try {
       const response = await axios.post("http://localhost:8080/api/auth/login", formData);
-      const { accessToken, refreshToken } = response.data;
-
+      console.log("Login response:", response.data); // ✅ Debug API response
+  
+      const { accessToken, user } = response.data;
+      if (!accessToken) {
+        throw new Error("No access token received");
+      }
+  
       // Store tokens in local storage
       localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
-
+  
+      // Dispatch to Redux store
+      dispatch(loginSuccess({ user, token: accessToken }));
+  
+      toast.success("Logged in successfully!");
       navigate('/');
-      
+  
     } catch (error) {
       setError("Invalid username or password");
       console.error("Login error:", error);
     }
   };
+  
 
   return (
     <div className="relative min-h-screen bg-black text-white">
       <BackgroundGrid />
-      <BackgroundBeams className="absolute top-0 left-0 w-full h-full pointer-events-none z-0" />
+      {/* <BackgroundBeams className="absolute top-0 left-0 w-full h-full pointer-events-none z-0" /> */}
 
       <div className="container mx-auto flex min-h-screen items-center justify-center px-4">
         <div className="w-full max-w-md rounded-xl border border-gray-800 bg-black/50 backdrop-blur-md p-8 relative z-10">
@@ -92,6 +107,12 @@ export default function SignupFormDemo() {
                 </span>
               </div>
             </button>
+            <p className="text-gray-400 text-sm text-center mt-4">
+            Don't have an account?{" "}
+            <Link to="/signup" className="text-purple-400">
+              Sign up here
+            </Link>
+          </p>
           </form>
         </div>
       </div>

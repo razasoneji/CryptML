@@ -2,7 +2,8 @@
 import { 
   Lock, Key, Hash, Cpu, Code2, Database, 
   Binary, Network, Terminal, Fingerprint, Shield, 
-  Link2, LockKeyhole, Repeat
+  Link2, LockKeyhole, Repeat,
+  Layout
 } from 'lucide-react';
 import { BackgroundBeams } from './ui/background-beams';
 
@@ -210,6 +211,7 @@ const AlgorithmCard = ({ algorithm }: { algorithm: typeof algorithmData[0] }) =>
 const DocumentationPage = () => {
   return (
     <div className="relative min-h-screen bg-black text-white">
+     
       <BackgroundBeams className="absolute top-0 left-0 w-full h-full pointer-events-none z-0" />
       
       {/* Hero Section */}
@@ -317,6 +319,7 @@ const DocumentationPage = () => {
           </div>
         </div>
       </section>
+      
     </div>
   );
 };

@@ -30,8 +30,8 @@ const algorithms = [
 const EncryptionPage = () => {
   const [selectedAlgorithm, setSelectedAlgorithm] = useState(algorithms[0]);
   const [inputText, setInputText] = useState('');
-  const [encryptedText, setEncryptedText] = useState('Danish');
-  const [hexValue, setHexValue] = useState('Vahora');
+  const [encryptedText, setEncryptedText] = useState('');
+  const [hexValue, setHexValue] = useState('');
   const [key, setKey] = useState('');
   const [iv, setIV] = useState('');
   const [loading, setLoading] = useState(false);
