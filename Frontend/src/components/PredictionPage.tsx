@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { BackgroundBeams } from './ui/background-beams';
 import { TypewriterEffect } from './ui/typewriter-effect';
 import { toast } from 'react-hot-toast';
+import axios from 'axios';
 
 
 const algorithmDetails = {
@@ -202,7 +203,7 @@ const algorithmDetails = {
     },
 
 
-    ecdh_key_exchange: {
+    ecdh: {
         name: "Elliptic Curve Diffie-Hellman (ECDH)",
         type: "Key Exchange Protocol",
         useCases: [
@@ -262,10 +263,20 @@ const algorithmDetails = {
     }
 };
 
-
+const API_BASE = import.meta?.env?.REACT_APP_API_BASE || 'http://localhost:8080';
+const normalizeKey = (raw) => {
+    // extract alphabetic part before any dash or number suffix
+    const match = raw.match(/^([A-Za-z0-9]+)/);
+    if (!match) return raw.toLowerCase();
+    let key = match[1].toLowerCase();
+    // map common variants
+    if (key === 'aes') return 'aes';
+    if (key === 'des') return raw.startsWith('3des') ? '3des' : 'des';
+    return key;
+};
 const PredictionPage = () => {
     const [inputHex, setInputHex] = useState('');
-    const [prediction, setPrediction] = useState<keyof typeof algorithmDetails | null>("blowfish");
+    const [prediction, setPrediction] = useState<keyof typeof algorithmDetails | null>(null);
     const [loading, setLoading] = useState(false);
     const [history, setHistory] = useState<{ input: string, result: string }[]>([]);
     const [showDetails, setShowDetails] = useState(true);
@@ -281,39 +292,81 @@ const PredictionPage = () => {
         type: string;
     }
 
+// const handlePredict = async () => {
+//         if (!/^[0-9a-fA-F]+$/.test(inputHex)) {
+//             toast.error('Invalid HEX format');
+//             return;
+//         }
 
+//         setLoading(true);
+//         try {
+//             const token = localStorage.getItem('token');
+//             const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
+//             const resp = await axios.post(
+//                 `${API_BASE}/api/ml/predict`,
+//                 { input_hex: inputHex },
+//                 { headers }
+//             );
 
-    const mockPredict = async (hex: string): Promise<string> => {
-        // Replace with actual API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        const detected = hex.length % 2 === 0 ? 'aes' : 'des'; // Simple mock logic
-        return detected;
-    };
+//             const algKey = resp.data.predicted_algorithm;
+//             console.log('Prediction response:');
+//             console.log(resp.data);
+//             if (!algKey || !algorithmDetails[algKey.toLowerCase()]) {
+//                 throw new Error('Unknown algorithm returned');
+//             }
 
+//             setPrediction(algKey);
+//             setHistory(prev => [{ input: inputHex, result: algKey }, ...prev.slice(0, 5)]);
+//             setShowDetails(true);
+//             toast.success('Analysis complete!');
+//         } catch (err) {
+ 
+//             console.error(err);
+//             toast.error('Prediction failed');
+//         } finally {
+//             setLoading(false);
+//         }
+//     };
 
-    const handlePredict = async () => {
-        if (!inputHex.match(/^[0-9a-fA-F]+$/)) {
-            toast.error('Invalid HEX format');
+const handlePredict = async () => {
+    if (!/^[0-9a-fA-F]+$/.test(inputHex)) {
+        toast.error('Invalid HEX format');
+        return;
+    }
+
+    setLoading(true);
+    try {
+        const token = localStorage.getItem('token');
+        const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
+        const resp = await axios.post(
+            `${API_BASE}/api/ml/predict`,
+            { input_hex: inputHex },
+            { headers }
+        );
+
+        const algKey = resp.data.predicted_algorithm.toLowerCase(); // Convert to lowercase
+        console.log('Prediction response:', resp.data);
+        const key = normalizeKey(algKey);
+        // Check if the algorithm exists in our details object
+        if (!algKey || !algorithmDetails[key]) {
+            console.error('Unknown algorithm:', algKey);
+            toast.error('Unknown algorithm detected');
             return;
         }
 
-
-        setLoading(true);
-        try {
-            const result = await mockPredict(inputHex);
-            setPrediction(result as keyof typeof algorithmDetails);
-            setHistory(prev => [{ input: inputHex, result }, ...prev.slice(0, 5)]);
-            setShowDetails(true);
-            toast.success('Analysis complete!');
-        } catch (error) {
-            toast.error('Prediction failed');
-        } finally {
-            setLoading(false);
-        }
-    };
-
-
+        setPrediction(key as keyof typeof algorithmDetails);
+        setHistory(prev => [{ input: inputHex, result: algKey }, ...prev.slice(0, 5)]);
+        setShowDetails(true);
+        toast.success('Analysis complete!');
+    } catch (err) {
+        console.error('Prediction error:', err);
+        toast.error('Prediction failed');
+    } finally {
+        setLoading(false);
+    }
+};
     const copyToClipboard = (text: string): void => {
         navigator.clipboard.writeText(text);
         toast.success('Copied to clipboard!');
@@ -341,12 +394,9 @@ const PredictionPage = () => {
         </motion.div>
     );
 
-
-    return (
+return (
         <div className="relative min-h-screen bg-black text-white">
             <BackgroundBeams className="absolute top-0 left-0 w-full h-full pointer-events-none z-0" />
-
-
             <div className="container mx-auto px-4 py-12 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-12">
@@ -358,56 +408,39 @@ const PredictionPage = () => {
                     </p>
                 </div>
 
-
-                {/* Main Content */}
+                {/* Main */}
                 <div className="grid lg:grid-cols-3 gap-8">
-                    {/* Input Section */}
+                    {/* Input */}
                     <div className="lg:col-span-2 space-y-6">
                         <div className="rounded-xl border border-gray-800 bg-black/50 backdrop-blur-md p-6">
                             <div className="flex items-center justify-between mb-4">
                                 <h2 className="text-xl font-semibold flex items-center gap-2">
-                                    <Search className="w-6 h-6 text-purple-400" />
-                                    Analyze HEX Input
+                                    <Search className="w-6 h-6 text-purple-400" /> Analyze HEX Input
                                 </h2>
-                                <button
-                                    onClick={() => copyToClipboard(inputHex)}
-                                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-white"
-                                >
-                                    <Clipboard className="w-5 h-5" />
-                                    Copy
+                                <button onClick={() => copyToClipboard(inputHex)} className="flex items-center gap-2 text-sm text-gray-400 hover:text-white">
+                                    <Clipboard className="w-5 h-5" /> Copy
                                 </button>
                             </div>
-
-
                             <textarea
                                 value={inputHex}
-                                onChange={(e) => setInputHex(e.target.value)}
-                                className="w-full h-32 bg-gray-900 rounded-lg p-4 border border-gray-800 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 resize-none font-mono text-sm"
+                                onChange={e => setInputHex(e.target.value)}
+                                className="w-full h-32 bg-gray-900 rounded-lg p-4 border border-gray-800 focus:ring-purple-500 resize-none font-mono text-sm"
                                 placeholder="Paste or enter HEX encoded data..."
                             />
-
-
                             <button
                                 onClick={handlePredict}
                                 disabled={loading}
                                 className="w-full mt-6 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 px-6 py-4 rounded-lg font-semibold transition-all flex items-center justify-center gap-2"
                             >
                                 {loading ? (
-                                    <>
-                                        <Hourglass className="w-5 h-5 animate-spin" />
-                                        Analyzing...
-                                    </>
+                                    <><Hourglass className="w-5 h-5 animate-spin" /> Analyzing...</>
                                 ) : (
-                                    <>
-                                        <Terminal className="w-5 h-5" />
-                                        Detect Algorithm
-                                    </>
+                                    <><Terminal className="w-5 h-5" /> Detect Algorithm</>
                                 )}
                             </button>
                         </div>
 
-
-                        {/* Prediction Result */}
+                        {/* Result */}
                         <AnimatePresence>
                             {prediction && (
                                 <motion.div
@@ -419,44 +452,17 @@ const PredictionPage = () => {
                                     <div className="flex items-center gap-3 mb-4">
                                         <Shield className="w-8 h-8 text-purple-400" />
                                         <TypewriterEffect
-                                            text={[{
-                                                text: `Detected: ${algorithmDetails[prediction].name}`,
-                                                className: "text-2xl font-bold bg-gradient-to-r from-purple-300 to-blue-300 bg-clip-text text-transparent"
-                                            }]}
+                                            text={[{ text: `Detected: ${algorithmDetails[prediction].name}`, className: "text-2xl font-bold bg-gradient-to-r from-purple-300 to-blue-300 bg-clip-text text-transparent" }]}
                                             cursorClassName="bg-purple-400"
                                         />
                                     </div>
 
-
                                     {showDetails && (
-                                        <motion.div
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            className="grid md:grid-cols-2 gap-4"
-                                        >
-                                            <DetailSection
-                                                title="Use Cases"
-                                                icon={Zap}
-                                                items={algorithmDetails[prediction].useCases}
-                                            />
-                                            <DetailSection
-                                                title="Strengths"
-                                                icon={Lock}
-                                                items={algorithmDetails[prediction].strengths}
-                                            />
-                                            <DetailSection
-                                                title="Weaknesses"
-                                                icon={AlertCircle}
-                                                items={algorithmDetails[prediction].weaknesses}
-                                            />
-                                            <DetailSection
-                                                title="Technical Specs"
-                                                icon={Cpu}
-                                                items={[
-                                                    `Type: ${algorithmDetails[prediction].type}`,
-                                                    `Key Sizes: ${'keySizes' in (algorithmDetails[prediction] as AlgorithmDetails) ? (algorithmDetails[prediction] as AlgorithmDetails).keySizes.join('bit, ') + 'bit' : 'N/A'}`
-                                                ]}
-                                            />
+                                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid md:grid-cols-2 gap-4">
+                                            <DetailSection title="Use Cases" icon={Zap} items={algorithmDetails[prediction].useCases} />
+                                            <DetailSection title="Strengths" icon={Lock} items={algorithmDetails[prediction].strengths} />
+                                            <DetailSection title="Weaknesses" icon={AlertCircle} items={algorithmDetails[prediction].weaknesses} />
+                                            <DetailSection title="Technical Specs" icon={Cpu} items={[`Type: ${algorithmDetails[prediction].type}`, `Key Sizes: ${'keySizes' in (algorithmDetails[prediction] as AlgorithmDetails) ? (algorithmDetails[prediction] as AlgorithmDetails).keySizes.join('bit, ') + 'bit' : 'N/A'}`]} />
                                         </motion.div>
                                     )}
                                 </motion.div>
@@ -464,50 +470,51 @@ const PredictionPage = () => {
                         </AnimatePresence>
                     </div>
 
-
-                    {/* History Panel */}
+                    {/* History & Guide */}
                     <div className="space-y-6">
                         <div className="rounded-xl border border-gray-800 bg-black/50 backdrop-blur-md p-6">
                             <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                                <History className="w-6 h-6 text-purple-400" />
-                                Analysis History
+                                <History className="w-6 h-6 text-purple-400" /> Analysis History
                             </h3>
                             <div className="space-y-3">
-                                {history.map((entry, idx) => (
-                                    <div
-                                        key={idx}
-                                        className="p-3 bg-gray-900 rounded-lg border border-gray-800 hover:border-purple-500 transition-colors cursor-pointer"
-                                        onClick={() => {
-                                            setInputHex(entry.input);
-                                            setPrediction(entry.result as keyof typeof algorithmDetails);
-                                        }}
-                                    >
-                                        <div className="flex items-center justify-between">
-                                            <span className="text-sm font-mono text-gray-400">{entry.input.slice(0, 15)}...</span>
-                                            <span className="text-purple-400 text-sm">{algorithmDetails[entry.result as keyof typeof algorithmDetails].name}</span>
-                                        </div>
-                                    </div>
-                                ))}
-                                {history.length === 0 && (
-                                    <p className="text-center text-gray-500 py-4">No history yet</p>
-                                )}
+                               
+
+{history.map((entry, idx) => {
+    // Check if the algorithm exists in algorithmDetails
+    const algorithm = algorithmDetails[entry.result as keyof typeof algorithmDetails];
+    if (!algorithm) return null; // Skip rendering if algorithm not found
+
+    return (
+        <div 
+            key={idx} 
+            className="p-3 bg-gray-900 rounded-lg border border-gray-800 hover:border-purple-500 cursor-pointer" 
+            onClick={() => { 
+                setInputHex(entry.input); 
+                setPrediction(entry.result as keyof typeof algorithmDetails);
+            }}
+        >
+            <div className="flex items-center justify-between">
+                <span className="text-sm font-mono text-gray-400">
+                    {entry.input.slice(0, 15)}...
+                </span>
+                <span className="text-purple-400 text-sm">
+                    {algorithm.name}
+                </span>
+            </div>
+        </div>
+    );
+})}
                             </div>
                         </div>
 
-
-                        {/* Algorithm Quick Guide */}
                         <div className="rounded-xl border border-gray-800 bg-black/50 backdrop-blur-md p-6">
                             <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                                <Key className="w-6 h-6 text-purple-400" />
-                                Supported Algorithms
+                                <Key className="w-6 h-6 text-purple-400" /> Supported Algorithms
                             </h3>
                             <div className="grid grid-cols-2 gap-2">
-                                {Object.keys(algorithmDetails).map((algo) => (
-                                    <div
-                                        key={algo}
-                                        className="p-2 text-sm bg-gray-900 rounded border border-gray-800 hover:border-purple-500 transition-colors"
-                                    >
-                                        {algorithmDetails[algo as keyof typeof algorithmDetails].name}
+                                {Object.keys(algorithmDetails).map(algo => (
+                                    <div key={algo} className="p-2 text-sm bg-gray-900 rounded border border-gray-800 hover:border-purple-500">
+                                        {algorithmDetails[algo].name}
                                     </div>
                                 ))}
                             </div>
@@ -518,6 +525,5 @@ const PredictionPage = () => {
         </div>
     );
 };
-
 
 export default PredictionPage;

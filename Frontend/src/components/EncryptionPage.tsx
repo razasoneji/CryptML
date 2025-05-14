@@ -388,7 +388,7 @@ const algorithms = [
   { name: 'SHA3-256', type: 'Hash', keySize: 256, icon: Hash },
 ];
 
-const API_BASE = import.meta?.env?.VITE_API_BASE || 'http://localhost:8080';
+const API_BASE = import.meta?.env?.REACT_APP_API_BASE || 'http://localhost:8080';
 
 const EncryptionPage = () => {
   const [selectedAlgorithm, setSelectedAlgorithm] = useState(algorithms[0]);
@@ -424,8 +424,7 @@ const EncryptionPage = () => {
 
       const resp = await axios.get(`${API_BASE}/api/encryption/${endpoint}`);
       const result = resp.data;
-      console.log("DATA")
-      console.log(result);
+  
       setEncryptedText(result);
       setHistory(prev => [
         { algorithm: selectedAlgorithm.name, input: inputText, result },
