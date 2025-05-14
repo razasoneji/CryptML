@@ -3,7 +3,6 @@ import {
   Lock, Key, Hash, Cpu, Code2, Database, 
   Binary, Network, Terminal, Fingerprint, Shield, 
   Link2, LockKeyhole, Repeat,
-  Layout
 } from 'lucide-react';
 import { BackgroundBeams } from './ui/background-beams';
 

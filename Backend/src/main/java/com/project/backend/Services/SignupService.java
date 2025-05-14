@@ -7,9 +7,11 @@ import com.project.backend.Repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -29,28 +31,38 @@ public class SignupService {
 
 
     public String signup(SignupRequest signupRequest) {
-        log.info("signupRequest received in signup service: {}", signupRequest);
+        try {
+            log.info("signupRequest received in signup service: {}", signupRequest);
 
-        Optional<User> existingUser = userRepository.findByUsername(signupRequest.getUsername());
-        if (existingUser.isPresent()) {
-            log.info("Username already taken and hence throwing error");
-            throw new BadCredentialsException("Username already taken");
+            Optional<User> existingUser = userRepository.findByUsername(signupRequest.getUsername());
+            if (existingUser.isPresent()) {
+                log.info("Username already taken and hence throwing error");
+                throw new BadCredentialsException("Username already taken");
+            }
+
+            log.info("Creating a new user object");
+            User newUser = new User();
+            newUser.setUsername(signupRequest.getUsername());
+            newUser.setPassword(passwordEncoder.encode(signupRequest.getPassword()));  // Encode password
+            newUser.setFirstName(signupRequest.getFirstName());
+            newUser.setLastName(signupRequest.getLastName());
+            newUser.setEnabled(true);
+
+            log.info("Going to save new user");
+            userRepository.save(newUser);
+            log.info("User saved");
+
+            return "User Registered Successfully";
+
+        } catch (BadCredentialsException e) {
+            log.error("Error: Username already taken");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Username already taken"); // ❌ 409 Conflict
+        } catch (Exception e) {
+            log.error("Error occurred during signup: {}", e.getMessage(), e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Signup failed, please try again.");
         }
-
-        log.info("Creating a new user object");
-        User newUser = new User();
-        newUser.setUsername(signupRequest.getUsername());
-        newUser.setPassword(passwordEncoder.encode(signupRequest.getPassword()));  // Encode password
-        newUser.setFirstName(signupRequest.getFirstName());
-        newUser.setLastName(signupRequest.getLastName());
-        newUser.setEnabled(true);
-
-        log.info("Going to save new user");
-        userRepository.save(newUser);
-        log.info("User saved");
-
-        return "User Registered Successfully";
     }
+
 
 
 //    public String signup(SignupRequest signupRequest) {

@@ -1,6 +1,6 @@
 "use client"
 import { BackgroundBeams } from "@/components/ui/background-beams"
-import { Layout } from "lucide-react"
+
 
 export default function BackgroundBeamsDemo() {
   return (

@@ -1,5 +1,4 @@
 "use client";
-import React, { useState } from "react";
 import axios from "axios";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -60,8 +59,9 @@ export default function SignupFormDemo() {
         firstName: formData.firstname,
         lastName: formData.lastname,
       });
-
-      if (response.status === 201) {
+      console.log("Signup me hai")
+      console.log(response);
+      if (response.status === 200) {
         toast.success("User Registered Successfully!");
         setSuccessMessage("User Registered Successfully");
         navigate("/login")
@@ -131,7 +131,7 @@ export default function SignupFormDemo() {
   );
 }
 
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 
 const LabelInputContainer = ({ children, className = "" }: { children: ReactNode, className?: string }) => {
   return <div className={cn("flex flex-col space-y-1.5 w-full", className)}>{children}</div>;

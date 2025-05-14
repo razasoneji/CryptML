@@ -37,6 +37,7 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody SignupRequest signupRequest) {
         log.info("Received SignupRequest in the signup controller. ");
+
         return ResponseEntity.ok(signupService.signup(signupRequest));
     }
 
@@ -48,13 +49,13 @@ public class AuthController {
 
 
 //
-    @PostMapping("/refresh")
-    public ResponseEntity<AuthResponse> refresh(@RequestBody RefreshTokenRequest refreshTokenRequest) {
-        log.info("Received refresh token request in the refresh controller.");
-        // Call the refresh service to handle the logic
-        AuthResponse authResponse = refreshService.refreshToken(refreshTokenRequest.getRefreshToken());
-        return ResponseEntity.ok(authResponse);
-    }
+//    @PostMapping("/refresh")
+//    public ResponseEntity<AuthResponse> refresh(@RequestBody RefreshTokenRequest refreshTokenRequest) {
+//        log.info("Received refresh token request in the refresh controller.");
+//        // Call the refresh service to handle the logic
+//        AuthResponse authResponse = refreshService.refreshToken(refreshTokenRequest.getRefreshToken());
+//        return ResponseEntity.ok(authResponse);
+//    }
 
     @PostMapping("/logout")
     public ResponseEntity<AuthResponse> logout() {
@@ -62,7 +63,7 @@ public class AuthController {
 
         // Return null tokens in the response.
 
-        return ResponseEntity.ok(new AuthResponse(null, null));
+        return ResponseEntity.ok(new AuthResponse());
     }
 
     //  @PostMapping("/refresh")

@@ -47,7 +47,7 @@ public class EncryptionService {
         System.arraycopy(iv, 0, encryptedData, 0, iv.length);
         System.arraycopy(ciphertext, 0, encryptedData, iv.length, ciphertext.length);
 
-        return "AES-256 Encrypted Data (Hex): " + bytesToHex(encryptedData);
+        return bytesToHex(encryptedData);
     }
 
     // **DES Encryption (CBC Mode)**
@@ -78,7 +78,7 @@ public class EncryptionService {
         System.arraycopy(iv, 0, encryptedData, 0, iv.length);
         System.arraycopy(ciphertext, 0, encryptedData, iv.length, ciphertext.length);
 
-        return "DES Encrypted Data (Hex): " + bytesToHex(encryptedData);
+        return bytesToHex(encryptedData);
     }
 
 
@@ -108,7 +108,7 @@ public class EncryptionService {
         System.arraycopy(iv, 0, encryptedData, 0, iv.length);
         System.arraycopy(ciphertext, 0, encryptedData, iv.length, ciphertext.length);
 
-        return "3DES Encrypted Data (Hex): " + bytesToHex(encryptedData);
+        return bytesToHex(encryptedData);
     }
 
 
@@ -143,7 +143,7 @@ public class EncryptionService {
         System.arraycopy(ciphertext, 0, encryptedData, iv.length, ciphertext.length);
 
         // Return encrypted data in hexadecimal format
-        return "Blowfish Encrypted Data (Hex): " + bytesToHex(encryptedData);
+        return bytesToHex(encryptedData);
     }
 
 
@@ -167,7 +167,7 @@ public class EncryptionService {
         byte[] ciphertext = cipher.doFinal(plaintext);
 
         // Return encrypted data in hexadecimal format
-        return "RC4 Encrypted Data (Hex): " + bytesToHex(ciphertext);
+        return bytesToHex(ciphertext);
     }
 
 
@@ -196,7 +196,7 @@ public class EncryptionService {
         byte[] ciphertext = cipher.doFinal(plaintext);
 
         // Return encrypted data in hexadecimal format
-        return "ChaCha20 Encrypted Data (Hex): " + bytesToHex(ciphertext);
+        return bytesToHex(ciphertext);
     }
 
 
@@ -217,7 +217,7 @@ public class EncryptionService {
         byte[] ciphertext = cipher.doFinal(plaintext);
 
         // Return encrypted data in hexadecimal format
-        return "RSA Encrypted Data (Hex): " + bytesToHex(ciphertext);
+        return bytesToHex(ciphertext);
     }
 
 
@@ -239,7 +239,7 @@ public class EncryptionService {
         byte[] signedData = signature.sign();
 
         // Return the signature in hexadecimal format
-        return "DSA Signature (Hex): " + bytesToHex(signedData);
+        return bytesToHex(signedData);
     }
 
 
@@ -263,7 +263,7 @@ public class EncryptionService {
         byte[] signedData = signature.sign();
 
         // Return the signature in hexadecimal format
-        return "ECDSA Signature (Hex): " + bytesToHex(signedData);
+        return bytesToHex(signedData);
     }
 
     public String performDiffieHellmanKeyExchange() throws Exception {
@@ -288,7 +288,7 @@ public class EncryptionService {
         SecretKey derivedKey = new SecretKeySpec(sharedSecretA, 0, 32, "AES");
 
         // Convert derived key to hex and return
-        return "Diffie-Hellman Derived Key (Hex): " + bytesToHex(derivedKey.getEncoded());
+        return bytesToHex(derivedKey.getEncoded());
     }
 
 
@@ -314,7 +314,7 @@ public class EncryptionService {
         SecretKeySpec derivedKey = new SecretKeySpec(sharedSecretA, 0, 32, "AES");
 
         // Convert derived key to hex and return
-        return "ECDH Derived Key (Hex): " + bytesToHex(derivedKey.getEncoded());
+        return bytesToHex(derivedKey.getEncoded());
     }
 
 
@@ -328,7 +328,7 @@ public class EncryptionService {
         byte[] hashBytes = md5Digest.digest(data);
 
         // Convert hash to hexadecimal format
-        return "MD5 Hash (Hex): " + bytesToHex(hashBytes);
+        return bytesToHex(hashBytes);
     }
 
     public String generateSHA1Hash() throws NoSuchAlgorithmException {
@@ -341,7 +341,7 @@ public class EncryptionService {
         byte[] hashBytes = sha1Digest.digest(data);
 
         // Convert hash to hexadecimal format
-        return "SHA-1 Hash (Hex): " + bytesToHex(hashBytes);
+        return bytesToHex(hashBytes);
     }
 
 
@@ -355,7 +355,7 @@ public class EncryptionService {
         byte[] hashBytes = sha256Digest.digest(data);
 
         // Convert hash to hexadecimal format
-        return "SHA-256 Hash (Hex): " + bytesToHex(hashBytes);
+        return bytesToHex(hashBytes);
     }
 
 
@@ -369,7 +369,7 @@ public class EncryptionService {
         byte[] hashBytes = sha3Digest.digest(data);
 
         // Convert hash to hexadecimal format
-        return "SHA-3-256 Hash (Hex): " + bytesToHex(hashBytes);
+        return bytesToHex(hashBytes);
     }
 
 

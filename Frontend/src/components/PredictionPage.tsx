@@ -28,6 +28,15 @@ const algorithmDetails = {
         keySizes: [56],
         type: 'Symmetric Block Cipher'
     },
+    '3des': {
+        name: '3DES (Triple DES)',
+        description: 'Triple Data Encryption Standard applies DES three times to each data block for increased security, but is slower than AES.',
+        useCases: ['Legacy financial systems', 'Backward compatibility'],
+        strengths: ['Higher security than single DES', 'Well-understood'],
+        weaknesses: ['Lower performance', 'Block size still 64 bits'],
+        keySizes: [168],
+        type: 'Symmetric Block Cipher'
+    },
     blowfish: {
         name: "Blowfish",
         type: "Symmetric Block Cipher",
@@ -215,6 +224,42 @@ const algorithmDetails = {
         ],
         description: "ECDH is a variant of the Diffie-Hellman key exchange protocol using elliptic curve cryptography for key agreement."
     },
+    md5: {
+        name: 'MD5',
+        description: 'MD5 is a cryptographic hash function producing 128-bit digests; now considered broken for collision resistance.',
+        useCases: ['Data integrity checks (legacy)'],
+        strengths: ['Fast computation'],
+        weaknesses: ['Collision vulnerabilities'],
+        keySizes: [],
+        type: 'Hash Function'
+    },
+    'sha-1': {
+        name: 'SHA-1',
+        description: 'SHA-1 is a 160-bit hash function, once widely used but now deprecated due to practical collision attacks.',
+        useCases: ['Legacy TLS', 'Version control identifiers'],
+        strengths: ['Simple design'],
+        weaknesses: ['Collision attacks'],
+        keySizes: [],
+        type: 'Hash Function'
+    },
+    'sha-256': {
+        name: 'SHA-256',
+        description: 'SHA-256 is part of the SHA-2 family, producing 256-bit digests; widely used for integrity and digital signatures.',
+        useCases: ['Blockchain', 'TLS certificates', 'File integrity'],
+        strengths: ['Strong collision resistance'],
+        weaknesses: ['Slower on constrained devices'],
+        keySizes: [],
+        type: 'Hash Function'
+    },
+    'sha3-256': {
+        name: 'SHA3-256',
+        description: 'SHA3-256 is a Keccak-based hash function, offering a different internal structure from SHA-2 for additional diversity.',
+        useCases: ['Next-generation hashing', 'Post-quantum prep'],
+        strengths: ['Different design from SHA-2'],
+        weaknesses: ['Less hardware optimization'],
+        keySizes: [],
+        type: 'Hash Function'
+    }
 };
 
 
