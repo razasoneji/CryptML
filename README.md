@@ -138,11 +138,7 @@ http://localhost:8080/api/health
 http://localhost:3000
 ```
 ------------------------------------------------------------
-## Step 6: Deployment (Optional)
-### Backend: Deploy using Docker, AWS, or any cloud provider.
-### Frontend: Deploy using Vercel, Netlify, or any static hosting.
 
-------------------------------------------------------------
 ## Installation and setup complete! 🚀
 
 
